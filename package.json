@@ -1,0 +1,24 @@
+{
+	"name": "BlueFox-App",
+	"version": "0.0.1",
+	"description": "BlueFox-App",
+	"main": "index.js",
+	"authors": [
+		"shiv",
+		"flaringphoenix"
+	],
+	"license": "ISC",
+	"scripts": {
+		"electron .": "echo \"Failed to Find\""
+	},
+	"dependencies": {
+		"discord-rich-presence": "0.0.8",
+		"discord.js": "^12.3.1",
+		"electron": "latest",
+		"fs": "latest",
+		"moment": "^2.27.0",
+		"node-fetch": "latest",
+		"node-notifier": "^8.0.0",
+		"webhook-discord": "^3.7.5"
+	}
+}
