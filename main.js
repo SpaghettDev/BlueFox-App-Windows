@@ -1,11 +1,13 @@
+// Do not change
+let version = "v1.0.1";
+
 // Dependencies
 const electron = require('electron');
 const { app, BrowserWindow } = require('electron');
 const webhook = require("webhook-discord");
+const client = require('discord-rich-presence')("750914713977749556");
 
-let client = require('discord-rich-presence')("750914713977749556");
 let url = "https://panel.bluefoxhost.com/";
-
 let date = new Date();
 let win;
 
@@ -15,7 +17,7 @@ require('./modules/functions.js')(client);
 app.on('ready', async () => {
 
     win = new BrowserWindow({
-        title: 'Starting...',
+        title: `BlueFox Starting... ${version}`,
         icon: "./Icon/bluefox.ico",
         center: true,
         resizable: true,
@@ -32,12 +34,11 @@ app.on('ready', async () => {
     await win.loadURL(url);
 
     await client.updatePresence({
-        state: "BlueFox App",
-        details: "Starting...",
+        state: "BlueFox Panel",
+        details: "Just Started",
         startTimestamp: date,
         largeImageKey: "bluefox",
         largeImageText: "BlueFoxHost.com",
-        instance: true
     });
 
     win.webContents.on("devtools-opened", () => {
@@ -55,8 +56,8 @@ app.on('ready', async () => {
     win.on('page-title-updated', async () => {
         console.log(win.webContents.get)
         await client.updatePresence({
-            state: win.webContents.getTitle().split(" - ")[1],
-            details: win.webContents.getTitle().split(" - ")[0],
+            state: "Page: " + win.webContents.getTitle().split(" - ")[1].replace("Viewing Server", ""),
+            details: "Site: " + win.webContents.getTitle().split(" - ")[0],
             startTimestamp: date,
             largeImageKey: "bluefox",
             largeImageText: "BlueFoxHost.com"
@@ -65,8 +66,8 @@ app.on('ready', async () => {
 
     win.on('focus', async () => {
         await client.updatePresence({
-            state: win.webContents.getTitle().split(" - ")[1],
-            details: win.webContents.getTitle().split(" - ")[0],
+            state: "Page: " + win.webContents.getTitle().split(" - ")[1].replace("Viewing Server", ""),
+            details: "Site: " + win.webContents.getTitle().split(" - ")[0],
             startTimestamp: date,
             largeImageKey: "bluefox",
             largeImageText: "BlueFoxHost.com"
