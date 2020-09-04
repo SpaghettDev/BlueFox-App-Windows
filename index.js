@@ -1,11 +1,10 @@
 // Dependencies
 const electron = require('electron');
-const fetch = require('node-fetch')
 const { app, BrowserWindow } = require('electron');
 const webhook = require("webhook-discord");
-const fs = require("fs");
 
 let client = require('discord-rich-presence')("750914713977749556");
+let url = "https://panel.bluefoxhost.com/";
 
 let date = new Date();
 
@@ -43,7 +42,7 @@ app.on('ready', async () => {
         win.webContents.closeDevTools();
     });
 
-    await win.loadURL("https://panel.bluefoxhost.com/");
+    await win.loadURL(url);
 
     win.once('ready-to-show',async () => {
         win.show();

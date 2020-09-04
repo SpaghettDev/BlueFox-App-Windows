@@ -12,9 +12,7 @@
 		"discord-rich-presence": "0.0.8",
 		"discord.js": "^12.3.1",
 		"electron": "latest",
-		"fs": "latest",
 		"moment": "^2.27.0",
-		"node-fetch": "latest",
 		"node-notifier": "^8.0.0",
 		"webhook-discord": "^3.7.5"
 	}
