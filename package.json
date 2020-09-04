@@ -2,11 +2,8 @@
 	"name": "BlueFox-App",
 	"version": "0.0.1",
 	"description": "BlueFox-App",
-	"main": "index.js",
-	"authors": [
-		"shiv",
-		"flaringphoenix"
-	],
+	"main": "main.js",
+	"authors": ["shiv", "flaringphoenix"],
 	"license": "ISC",
 	"scripts": {
 		"electron .": "echo \"Failed to Find\""
