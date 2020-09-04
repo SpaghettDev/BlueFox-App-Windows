@@ -3,7 +3,10 @@
 	"version": "0.0.1",
 	"description": "BlueFox-App",
 	"main": "main.js",
-	"authors": ["shiv", "flaringphoenix"],
+	"authors": [
+		"shiv",
+		"flaringphoenix"
+	],
 	"license": "ISC",
 	"scripts": {
 		"electron .": "echo \"Failed to Find\""
@@ -14,6 +17,7 @@
 		"electron": "latest",
 		"moment": "^2.27.0",
 		"node-notifier": "^8.0.0",
+		"web-remote-control": "^1.9.8",
 		"webhook-discord": "^3.7.5"
 	}
 }
