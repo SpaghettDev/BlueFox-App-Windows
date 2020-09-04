@@ -7,13 +7,14 @@ let client = require('discord-rich-presence')("750914713977749556");
 let url = "https://panel.bluefoxhost.com/";
 
 let date = new Date();
+let win;
 
 // Loads modules
 require('./modules/functions.js')(client);
 
 app.on('ready', async () => {
 
-    let win = new BrowserWindow({
+    win = new BrowserWindow({
         title: 'Starting...',
         icon: "./Icon/bluefox.ico",
         center: true,
@@ -27,6 +28,9 @@ app.on('ready', async () => {
         titleBarStyle: "hidden"
     });
 
+    win.removeMenu();
+    await win.loadURL(url);
+
     await client.updatePresence({
         state: "BlueFox App",
         details: "Starting...",
@@ -36,13 +40,9 @@ app.on('ready', async () => {
         instance: true
     });
 
-    win.removeMenu();
-
     win.webContents.on("devtools-opened", () => {
         win.webContents.closeDevTools();
     });
-
-    await win.loadURL(url);
 
     win.once('ready-to-show',async () => {
         win.show();
@@ -52,26 +52,24 @@ app.on('ready', async () => {
         win = null;
     });
 
-    win.on('page-title-updated', async (e) => {
-        console.log(win.webContents.getTitle())
+    win.on('page-title-updated', async () => {
+        console.log(win.webContents.get)
         await client.updatePresence({
             state: win.webContents.getTitle().split(" - ")[1],
             details: win.webContents.getTitle().split(" - ")[0],
             startTimestamp: date,
             largeImageKey: "bluefox",
-            largeImageText: "BlueFoxHost.com",
-            instance: true
+            largeImageText: "BlueFoxHost.com"
         });
     })
 
-    win.on('focus', async (e) => {
+    win.on('focus', async () => {
         await client.updatePresence({
             state: win.webContents.getTitle().split(" - ")[1],
             details: win.webContents.getTitle().split(" - ")[0],
             startTimestamp: date,
             largeImageKey: "bluefox",
-            largeImageText: "BlueFoxHost.com",
-            instance: true
+            largeImageText: "BlueFoxHost.com"
         });
     });
 
@@ -79,12 +77,10 @@ app.on('ready', async () => {
         await client.updatePresence({
             details: "Idle",
             startTimestamp: new Date(),
-            largeImageKey: "bluefox",
-            largeImageText: "BlueFoxHost.com",
-            instance: true
+            largeImageKey: "idle",
+            largeImageText: "BlueFoxHost.com"
         });
         date = new Date();
     })
 
-    client.win = win;
 });
