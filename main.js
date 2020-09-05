@@ -30,6 +30,9 @@ app.on('ready', async () => {
         titleBarStyle: "hidden"
     });
 
+    // maximize window
+    if (win.maximizable) win.maximize();
+    
     win.removeMenu();
     await win.loadURL(url);
 
@@ -43,6 +46,27 @@ app.on('ready', async () => {
 
     win.webContents.on("devtools-opened", () => {
         win.webContents.closeDevTools();
+    });
+    
+    // load custom scrollbar
+    win.webContents.on('did-finish-load', () => {
+        win.webContents.insertCSS(`
+            ::-webkit-scrollbar {
+                width: 5px;
+            }
+
+            ::-webkit-scrollbar-track {
+                background: #1e1d37; 
+            }
+                
+            ::-webkit-scrollbar-thumb {
+                background: #2a2949; 
+            }
+
+            ::-webkit-scrollbar-thumb:hover {
+                background: #23223f; 
+            }
+        `);
     });
 
     win.once('ready-to-show',async () => {
@@ -82,6 +106,6 @@ app.on('ready', async () => {
             largeImageText: "BlueFoxHost.com"
         });
         date = new Date();
-    })
+    });
 
 });
