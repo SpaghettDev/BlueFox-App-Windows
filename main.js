@@ -4,7 +4,6 @@ let version = "v1.0.1";
 // Dependencies
 const electron = require('electron');
 const { app, BrowserWindow } = require('electron');
-const webhook = require("webhook-discord");
 const client = require('discord-rich-presence')("750914713977749556");
 
 let url = "https://panel.bluefoxhost.com/";
@@ -30,9 +29,6 @@ app.on('ready', async () => {
         titleBarStyle: "hidden"
     });
 
-    // maximize window
-    if (win.maximizable) win.maximize();
-    
     win.removeMenu();
     await win.loadURL(url);
 
@@ -52,7 +48,7 @@ app.on('ready', async () => {
     win.webContents.on('did-finish-load', () => {
         win.webContents.insertCSS(`
             ::-webkit-scrollbar {
-                width: 5px;
+                width: 15px;
             }
 
             ::-webkit-scrollbar-track {
